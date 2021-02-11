@@ -16,5 +16,5 @@ TestCase firstTestGenerator(int factors, std::vector<int> levels, std::vector<st
 TestCase testGenerator(int factors, std::vector<int> levels, std::vector<int> pairsRemaining, std::vector<int> factorBegin, int totalComponents, std::vector<std::vector<int>>& grid);
 void factorShuffle(std::vector<int>& factorOrder);
 void countNewPairs(TestCase& currentTestCase, std::vector<std::vector<int>>& grid);
-TestCase selectCandidate(int factors, std::vector<int> levels, std::vector<int> pairsRemaining, std::vector<int> factorBegin, int totalComponents, std::vector<std::vector<int>>& grid);
+TestCase selectCandidate(int factors, std::vector<int>& levels, std::vector<int>& pairsRemaining, std::vector<int>& factorBegin, int totalComponents, std::vector<std::vector<int>>& grid);
 void addToSuite(TestCase currentTestCase, std::vector<std::vector<int>>& grid, std::vector<int>& pairsRemaining);

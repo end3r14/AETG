@@ -134,7 +134,7 @@ public:
 
 	void printTestCase()
 	{
-		std::cout << "Components: ";
+		//std::cout << "Components: ";
 		for (int i = 0; i != testComponents.size(); i++)
 		{
 			std::cout << testComponents[i] << " ";

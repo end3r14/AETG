@@ -106,7 +106,7 @@ void printPairs(vector<ComponentPair> pairs)
 int countComponents(vector<int>& levels)
 {
 	int totalComponents = accumulate(levels.begin(), levels.end(), 0);
-	cout << "total: " << totalComponents << endl;
+	//cout << "total: " << totalComponents << endl;
 	
 	return totalComponents;
 }

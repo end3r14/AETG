@@ -52,7 +52,7 @@ TestCase testGenerator(int factors, vector<int> levels, vector<int> pairsRemaini
 	//find the max number of remaining pairs from the currently selected factor's components
 	maxPairsLeft = *max_element(pairsRemaining.begin() + factorBegin[currentFactor], pairsRemaining.begin() + factorBegin[currentFactor] + levels[currentFactor]);
 
-	cout << "CHECK MAX PAIRS FOR FACTOR " << factorOrder[0] << ": " << maxPairsLeft << endl;
+	//cout << "CHECK MAX PAIRS FOR FACTOR " << factorOrder[0] << ": " << maxPairsLeft << endl;
 
 	//add any component in the current factor with the max number of remaining pairs to a vector (vector<int> maxPairs)
 	for (int i = factorBegin[currentFactor]; i != factorBegin[currentFactor] + levels[currentFactor]; i++)
@@ -131,7 +131,7 @@ TestCase testGenerator(int factors, vector<int> levels, vector<int> pairsRemaini
 		//testCase.printTestCase();
 
 		totalNewPairs += currentMaxPairs;
-		cout << "Total new pairs so far: " << totalNewPairs << endl;
+		//cout << "Total new pairs so far: " << totalNewPairs << endl;
 	}
 	//**********************************************************************************************
 	//consider that there may be multiple options which will make the most new pairs
@@ -139,7 +139,7 @@ TestCase testGenerator(int factors, vector<int> levels, vector<int> pairsRemaini
 	//repeat this process for each consecutive factor until finished
 	
 	testCase.setNewPairs(totalNewPairs);
-	cout << "Final new pairs for this test: " << testCase.newPairsCount() << endl;
+	//cout << "Final new pairs for this test: " << testCase.newPairsCount() << endl;
 
 	return testCase;
 }
@@ -178,15 +178,15 @@ void countNewPairs(TestCase& currentTestCase, vector<vector<int>>& grid)
 	currentTestCase.setNewPairs(newPairCounter);
 }
 
-TestCase selectCandidate(int factors, vector<int> levels, vector<int> pairsRemaining, vector<int> factorBegin, int totalComponents, vector<vector<int>>& grid)
+TestCase selectCandidate(int factors, vector<int>& levels, vector<int>& pairsRemaining, vector<int>& factorBegin, int totalComponents, vector<vector<int>>& grid)
 {
 	vector<TestCase> candidates;
 	int currentMaxPairs = 0;
 	int selectedTest = -1;
 
-	for (int i = 0; i != 1; i++)
+	for (int i = 0; i != 50; i++)
 	{
-		cout << "+++++++++++++ATTEMPTING NEW TEST CASE+++++++++++++" << endl;
+		//cout << "+++++++++++++ATTEMPTING NEW TEST CASE+++++++++++++" << endl;
 		TestCase newTest = testGenerator(factors, levels, pairsRemaining, factorBegin, totalComponents, grid);
 
 		if (newTest.newPairsCount() > currentMaxPairs)
@@ -203,12 +203,12 @@ TestCase selectCandidate(int factors, vector<int> levels, vector<int> pairsRemai
 		{
 			//nothing. continue?
 		}
-		cout << "++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+		//cout << "++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
 	}
 	selectedTest = rand() % candidates.size();
 	
 	//cout << "&&&&&&&&&&&&&&&& OUR SELECTED CASE &&&&&&&&&&&&&&&&" << endl;
-	candidates[selectedTest].printTestCase();
+	//candidates[selectedTest].printTestCase();
 	//cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" << endl;
 
 	return candidates[selectedTest];
