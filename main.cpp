@@ -164,18 +164,30 @@ int main()
 		//printGrid(grid);
 	}
 
-	for (int i = 0; i != bestSuites.size(); i++)
+	//show all best suites
+	//for (int i = 0; i != bestSuites.size(); i++)
+	//{
+	//	cout << "Best test suite " << i + 1 << endl;
+	//	cout << endl;
+	//	cout << bestSuites[i].size() << endl;
+	//	cout << endl;
+	//	for (int j = 0; j != bestSuites[i].size(); j++)
+	//	{
+	//		bestSuites[i][j].printTestCase();
+	//	}
+	//	cout << endl;
+	//}
+
+	//select one of the best suites
+	vector<TestCase> selectedSuite = bestSuites[rand() % bestSuites.size()];
+	cout << "*******************************" << endl;
+	cout << selectedSuite.size() << endl;
+	cout << endl;
+	for (int i = 0; i != selectedSuite.size(); i++)
 	{
-		cout << "Best test suite " << i + 1 << endl;
-		cout << endl;
-		cout << bestSuites[i].size() << endl;
-		cout << endl;
-		for (int j = 0; j != bestSuites[i].size(); j++)
-		{
-			bestSuites[i][j].printTestCase();
-		}
-		cout << endl;
+		selectedSuite[i].printTestCase();
 	}
+	cout << "*******************************" << endl;
 
 	cout << "Smallest suite size: " << smallestSuiteSize << endl;
 	cout << "Largest suite size: " << largestSuiteSize << endl;
