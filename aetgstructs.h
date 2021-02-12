@@ -64,6 +64,11 @@ public:
 		testComponents[factor] = componentNumber;
 	}
 
+	std::vector<int> getTest()
+	{
+		return testComponents;
+	}
+
 	//print all of the components in a test case on a single line
 	void printTestCase()
 	{

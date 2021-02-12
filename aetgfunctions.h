@@ -17,3 +17,5 @@ void countNewPairs(TestCase& currentTestCase, std::vector<std::vector<int>>& gri
 TestCase selectCandidate(int factors, std::vector<int>& levels, std::vector<int>& pairsRemaining, std::vector<int>& factorBegin, int totalComponents, std::vector<std::vector<int>>& grid);
 void addToSuite(TestCase currentTestCase, std::vector<std::vector<int>>& grid, std::vector<int>& pairsRemaining);
 std::vector<TestCase> selectSuite(std::vector<int>& factorLevels);
+void outputSuiteFile(std::vector<TestCase>& selectedSuite);
+void outputSuiteAnalytics(std::vector<TestCase>& selectedSuite, unsigned int smallestSuiteSize, unsigned int largestSuiteSize, int totalCases);

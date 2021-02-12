@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <numeric>
 #include <random>
+#include <fstream>
 
 using namespace std;
 
@@ -384,18 +385,78 @@ vector<TestCase> selectSuite(vector<int>& factorLevels)
 	//select one of the best suites
 	vector<TestCase> selectedSuite = bestSuites[rand() % bestSuites.size()];
 
-	//print out analytics to the console in a nice format
-	cout << "*******************************" << endl;
+	//output the suite to a file named testsuite.txt
+	outputSuiteFile(selectedSuite);
+	
+	//output the information to the console in addition to the file format
+	outputSuiteAnalytics(selectedSuite, smallestSuiteSize, largestSuiteSize, totalCases);
+
+	return selectedSuite;
+}
+
+/**
+ *
+ *	This function sends all test cases from the selected
+ *  suite to an output file. The total number of test
+ *  cases is printed on the first line followed by a blank
+ *  line. Then each test case's components are printed
+ *  on their own line in a space delimited format.
+ *
+ *	Returns no value(s).
+ *
+ */
+void outputSuiteFile(vector<TestCase>& selectedSuite)
+{
+	//open a file stream to output the suite to a file called testsuite.txt
+	ofstream outputFile;
+	outputFile.open("testsuite.txt");
+
+	//print the total number of test cases in the suite
+	outputFile << selectedSuite.size() << endl;
+	outputFile << endl;
+
+	//print out the suite to the text file in the requested format
+	for (int i = 0; i != selectedSuite.size(); i++)
+	{
+		//print each test case line by line
+		vector<int> outputTest = selectedSuite[i].getTest();
+		for (int j = 0; j != outputTest.size(); j++)
+		{
+			outputFile << outputTest[j] << " ";
+		}
+		outputFile << endl;
+	}
+	//close the file stream
+	outputFile.close();
+}
+
+/**
+ *
+ *	This function prints all test cases from the selected
+ *  suite to the console. The total number of test cases
+ *  is printed on the first line followed by a blank
+ *  line. Then each test case's components are printed
+ *  on their own line in a space delimited format. The
+ *  smallest, largest, and average (rounded down) suite
+ *  sizes are output to the console as well.
+ *
+ *	Returns no value(s).
+ *
+ */
+void outputSuiteAnalytics(vector<TestCase>& selectedSuite, unsigned int smallestSuiteSize, unsigned int largestSuiteSize, int totalCases)
+{
+	//print the total number of test cases in the suite
 	cout << selectedSuite.size() << endl;
 	cout << endl;
+	
+	//print each test case line by line
 	for (int i = 0; i != selectedSuite.size(); i++)
 	{
 		selectedSuite[i].printTestCase();
 	}
-	cout << "*******************************" << endl;
+	//print analytics to the console
+	cout << "********** Analytics **********" << endl;
 	cout << "Smallest suite size: " << smallestSuiteSize << endl;
 	cout << "Largest suite size: " << largestSuiteSize << endl;
 	cout << "Average suite size (rounded down): " << totalCases / 100 << endl;
-
-	return selectedSuite;
 }
